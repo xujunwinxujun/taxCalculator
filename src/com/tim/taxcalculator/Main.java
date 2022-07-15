@@ -19,11 +19,12 @@ public class Main {
 	
 	
 	public static void main(String[] args) throws Exception {
+		
 		Map<String,Object> parameterMap = parseCommand(args);
 		yueXin = Float.parseFloat(String.valueOf(parameterMap.get("-yueXin")));
 		kouJian = Float.parseFloat(String.valueOf(parameterMap.get("-kouJian") == null?0:parameterMap.get("-kouJian")));
 		jiangJin = Float.parseFloat(String.valueOf(parameterMap.get("-jiangjin")==null?0:parameterMap.get("-jiangjin")));
-		System.out.println("\n×¢ÒâºË¶Ô£¬Èç²»Ò»ÖÂÖ¤Ã÷²ÎÊýÆ´Ð´´íÎó£º ÔÂÐ½£º" + yueXin + "	¿Û¼õ£º" + kouJian + "	½±½ð£º" + jiangJin + "\n");
+		System.out.println("\n×¢ï¿½ï¿½Ë¶Ô£ï¿½ï¿½ç²»Ò»ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ´Ð´ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð½ï¿½ï¿½" + yueXin + "	ï¿½Û¼ï¿½ï¿½ï¿½" + kouJian + "	ï¿½ï¿½ï¿½ï¿½" + jiangJin + "\n");
 		
 		float calculateFuLiByXinShui = 0.0f;
 		if(yueXin > tripleStandardYueXin) {
@@ -38,12 +39,12 @@ public class Main {
 		
 		float fuliSum =  yaoLaoXian + yiLiaoXian + shiYeXian + gongJiJin + qiZhengDian + kouJian;
 		float payForTax = yueXin - fuliSum;
-		System.out.println("\n\nÔÂÐ½:" + yueXin
-				+ "\nÉç±££º" + yaoLaoXian
-				+ "\nÒ½±££º" + yiLiaoXian
-				+ "\nÊ§Òµ£º" + shiYeXian
-				+ "\n¹«»ý½ð£º" + gongJiJin
-				+ "\nÔÂÐè½»Ë°½ð¶î£º" + payForTax + "\n\n"
+		System.out.println("\n\nï¿½ï¿½Ð½:" + yueXin
+				+ "\nï¿½ç±£ï¿½ï¿½" + yaoLaoXian
+				+ "\nÒ½ï¿½ï¿½ï¿½ï¿½" + yiLiaoXian
+				+ "\nÊ§Òµï¿½ï¿½" + shiYeXian
+				+ "\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + gongJiJin
+				+ "\nï¿½ï¿½ï¿½è½»Ë°ï¿½ï¿½î£º" + payForTax + "\n\n"
 				);		
 		
 		float taxSum = 0.0f;
@@ -52,25 +53,25 @@ public class Main {
 			TaxRate taxRate = TaxRate.get(payForTaxTemp);
 			float tax = payForTaxTemp * taxRate.taxRate - taxRate.suSuanKouJianShu - taxSum;
 			taxSum += tax;
-			System.out.println( i + "ÔÂ·Ý½»Ë°£º" + tax + "		Ðè½»Ë°½ð¶î£º" + payForTaxTemp +"		Ë°ÂÊ£º" + (int)(taxRate.taxRate * 100));
+			System.out.println( i + "ï¿½Â·Ý½ï¿½Ë°ï¿½ï¿½" + tax + "		ï¿½è½»Ë°ï¿½ï¿½î£º" + payForTaxTemp +"		Ë°ï¿½Ê£ï¿½" + (int)(taxRate.taxRate * 100));
 		}
-		System.out.println("\n12¸öÔÂ×Ü¹²ÊÕÈë£º" + yueXin * 12.0f);
-		System.out.println("12¸öÔÂ×Ü¹²Ó¦½ÉË°µÄËùµÃ¶î£º" + payForTax * 12.0f);
-		System.out.println("12ÔÂ¹¤×Ê¹²½»Ë°£º" + taxSum);
+		System.out.println("\n12ï¿½ï¿½ï¿½ï¿½ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ë£º" + yueXin * 12.0f);
+		System.out.println("12ï¿½ï¿½ï¿½ï¿½ï¿½Ü¹ï¿½Ó¦ï¿½ï¿½Ë°ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶î£º" + payForTax * 12.0f);
+		System.out.println("12ï¿½Â¹ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Ë°ï¿½ï¿½" + taxSum);
 		
 		float payForTaxSum = payForTax * 12.0f + jiangJin;
 		TaxRate taxRate = TaxRate.get(payForTaxSum);
 		float tax = payForTaxSum * taxRate.taxRate - taxRate.suSuanKouJianShu - taxSum;
 		taxSum += tax;
-		System.out.println("\nÈ«Äê¹²ÊÕÈë£¨ +ÄêÖÕ½± £©£º" + (yueXin * 12.0f + jiangJin));
-		System.out.println("Ðè½»Ë°½ð¶î£¨+ ÄêÖÕ½±£©£º" + (payForTaxSum));
-		System.out.println( "ÄêÖÕ½±½»Ë°£º" + tax + "		Ë°ÂÊ£º" + taxRate.taxRate * 100);
-		System.out.println("È«Äê¹²½»Ë°£¨+ÄêÖÕ½±£©£º" + taxSum);
+		System.out.println("\nÈ«ï¿½ê¹²ï¿½ï¿½ï¿½ë£¨ +ï¿½ï¿½ï¿½Õ½ï¿½ ï¿½ï¿½ï¿½ï¿½" + (yueXin * 12.0f + jiangJin));
+		System.out.println("ï¿½è½»Ë°ï¿½ï¿½î£¨+ ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½ï¿½" + (payForTaxSum));
+		System.out.println( "ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½Ë°ï¿½ï¿½" + tax + "		Ë°ï¿½Ê£ï¿½" + taxRate.taxRate * 100);
+		System.out.println("È«ï¿½ê¹²ï¿½ï¿½Ë°ï¿½ï¿½+ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½ï¿½" + taxSum);
 	}
 	
 	private static Map<String,Object> parseCommand(String[] args) {
 		if(args.length == 0) {
-			System.out.println("Çë°´ÏÂÁÐÃüÁîÊäÈë£º\njava -jar taxRate.jar -yueXin 20000 -kouJian 2000 -jiangjin 30000");
+			System.out.println("ï¿½ë°´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£º\njava -jar taxRate.jar -yueXin 20000 -kouJian 2000 -jiangjin 30000");
 			System.exit(0);
 		}
 		Map<String,Object> result = new HashMap<String,Object>();
@@ -80,7 +81,7 @@ public class Main {
 			}
 		}
 		if(!result.containsKey("-yueXin")) {
-			System.out.println("ÇëÊäÈëÔÂÐ½½ð¶î£¬½ð¶îÔÚ²ÎÊý -yueXin ºó·½!");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð½ï¿½ï¿½î£¬ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ -yueXin ï¿½ï¿½!");
 			System.exit(0);
 		}
 		printlnCommand(args);
@@ -93,7 +94,7 @@ public class Main {
 		for(int i =0;i<args.length;i++) {
 			command.append(" " + args[i]);
 		}
-		System.out.println("\nÄúÊäÈëµÄÃüÁîÎª£º" + command.toString());
+		System.out.println("\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½" + command.toString());
 	}
 
 }
